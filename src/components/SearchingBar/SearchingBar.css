@@ -1,0 +1,23 @@
+.searching-form {
+    position: absolute;
+    top: 10vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+}
+
+.searching-input {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.searching-label {
+    font-weight: bold;
+    font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px black;
+}

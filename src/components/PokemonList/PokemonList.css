@@ -1,0 +1,11 @@
+.pokemon-list {
+    position: absolute;
+    top: 30vh;
+    height: 70vh;
+    width: 100vw;
+    /*border: 1px solid black;*/
+}
+
+.pokemon-list p {
+    border: 1px solid black;
+}
