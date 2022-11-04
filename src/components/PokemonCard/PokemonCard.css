@@ -1,0 +1,26 @@
+/*body {*/
+/*    background-color: #6C757D;*/
+/*}*/
+
+.pokemon-card-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70vw;
+    margin: 4em auto;
+    padding: 30px 20px;
+    border: #282c34 solid  1px;
+    border-radius: 2px;
+    box-shadow: #282c34 2px 2px;
+    background-color: #fff;
+}
+
+.pokemon-card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.pokemon-card-buttons {
+    display: flex;
+    margin: 20px 0;
+}

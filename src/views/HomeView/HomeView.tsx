@@ -9,7 +9,7 @@ export const HomeView = () => {
     return (
         <>
             <PageNavbar/>
-            <div className="content-wrapper"></div>
+            <div className="bgc-wrapper"></div>
             <SearchingBar/>
             <PokemonList/>
 

@@ -2,9 +2,11 @@ import React from "react";
 import {Button, Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
+import "./LoginForm.css"
+
 export const LoginForm = () => {
     return (
-        <>
+        <div className="login-wrapper">
             <Form className="lg-m-5 mx-auto my-5 p-5 w-50 bg-dark text-warning">
                 <h3 style={{textAlign:"center"}} className="mb-5">Login</h3>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -21,7 +23,7 @@ export const LoginForm = () => {
                 </Form.Group>
     
                 <Button variant="outline-warning" type="submit">
-                    Submit
+                    Login
                 </Button>
                 <p className="text-muted mt-5">Do you have an account?</p>
                 <Link  to={'/registration'}>
@@ -31,6 +33,6 @@ export const LoginForm = () => {
                 </Link>
             </Form>
 
-        </>
+        </div>
     )
 }

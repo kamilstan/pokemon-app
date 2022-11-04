@@ -1,9 +1,10 @@
-.content-wrapper {
+.bgc-wrapper {
     position: relative;
     background-image: url("/public/pokemon-main.png");
-    height: 90vh;
+    min-height: 80vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 80%;
+    opacity: 85%;
+
 }

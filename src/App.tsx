@@ -1,28 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {Route, Routes} from "react-router-dom";
 import {LoginView} from "./views/LoginView/LoginView";
 import {HomeView} from "./views/HomeView/HomeView";
 import {RegistrationView} from "./views/RegistrationView/RegistrationView";
+import {SearchContext} from "./contexts/search.context";
+import {SearchInterface} from "./types/search/search";
+import {CardView} from "./views/CardView/CardView";
 
 import './App.css';
 
 function App() {
+
+    const [search, setSearch] = useState<SearchInterface>({
+        inputSearch: '',
+        selectSearch: '*',
+    });
+
   return (
-      <Routes>
-          <Route
-              path="/"
-              element={<HomeView />}
-          />
-          <Route
-              path="/login"
-              element={<LoginView />}
-          />
-          <Route
-              path="/registration"
-              element={<RegistrationView />}
-          />
-      </Routes>
+      <SearchContext.Provider value={{search, setSearch}}>
+          <Routes>
+              <Route
+                  path="/"
+                  element={<HomeView />}
+              />
+              <Route
+                  path="/login"
+                  element={<LoginView />}
+              />
+              <Route
+                  path="/registration"
+                  element={<RegistrationView />}
+              />
+              <Route
+                  path="/card/:cardId"
+                  element={<CardView />}
+              />
+          </Routes>
+      </SearchContext.Provider>
   )
 }
 

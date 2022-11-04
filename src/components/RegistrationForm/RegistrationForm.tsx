@@ -29,7 +29,7 @@ export const RegistrationForm = () => {
             </Form.Group>
 
             <Button variant="outline-warning" type="submit">
-                Submit
+                Register
             </Button>
 
         </Form>
