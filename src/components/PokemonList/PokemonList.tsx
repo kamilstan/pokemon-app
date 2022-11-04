@@ -5,7 +5,7 @@ import {Card, Button} from "react-bootstrap";
 import {SearchContext} from "../../contexts/search.context";
 import {Link} from "react-router-dom";
 import {CardRecord} from "../../types/card/card";
-import {Loader} from "../../common/Loader";
+import {Loader} from "../../common/Loader/Loader";
 
 export const PokemonList = () => {
 

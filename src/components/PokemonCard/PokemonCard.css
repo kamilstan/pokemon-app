@@ -3,6 +3,9 @@
 /*}*/
 
 .pokemon-card-wrapper {
+    position: absolute;
+    top: 15vh;
+    left: calc(50vw - 35vw);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -18,6 +21,10 @@
 .pokemon-card-info {
     display: flex;
     flex-direction: column;
+}
+
+.pokemon-card-info span {
+    font-weight: bold;
 }
 
 .pokemon-card-buttons {
