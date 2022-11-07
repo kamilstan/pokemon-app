@@ -11,7 +11,7 @@ export const PokemonList = () => {
 
     const [cards, setCards] = useState<CardRecord[] | null>(null);
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
     const {search, setSearch} = useContext(SearchContext);
 
@@ -34,8 +34,6 @@ export const PokemonList = () => {
         setPageSize( pageSize + 5);
     }
 
-    console.log(cards)
-
     if (cards === null) {
         return <Loader/>
     }
@@ -45,6 +43,8 @@ export const PokemonList = () => {
 
 
     }
+
+    console.log(cards)
 
     return (
         <div className="pokemon-list-wrapper" >
