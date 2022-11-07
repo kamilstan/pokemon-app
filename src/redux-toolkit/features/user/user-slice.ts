@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 interface User {
     id: string;
+    username: string;
     accessToken: string;
     expirationTime: number;
     role: string;
@@ -11,6 +12,7 @@ interface User {
 
 const initialState: User = {
     id: '',
+    username: '',
     accessToken: '',
     expirationTime: 0,
     role: '',
@@ -19,6 +21,10 @@ const initialState: User = {
 };
 
 interface SetId {
+    payload: string;
+}
+
+interface SetUsername {
     payload: string;
 }
 
@@ -45,6 +51,9 @@ export const userSlice = createSlice({
         setId: (state, action: SetId) => {
             state.id = action.payload;
         },
+        setUsername: (state, action: SetUsername) => {
+            state.username = action.payload;
+        },
         setAccessToken: (state, action: SetAccessToken) => {
             state.accessToken = action.payload;
         },
@@ -62,6 +71,7 @@ export const userSlice = createSlice({
 
 export const {
     setId,
+    setUsername,
     setAccessToken,
     setExpirationTime,
     setRole,

@@ -9,6 +9,8 @@ import {SearchInterface} from "./types/search/search";
 import {CardView} from "./views/CardView/CardView";
 
 import './App.css';
+import {useSelector} from "react-redux";
+import {StoreState} from "./redux-toolkit/store";
 
 function App() {
 
@@ -17,9 +19,15 @@ function App() {
         selectSearch: '*',
     });
 
+    const { id } = useSelector((store: StoreState) => store.user);
+
   return (
       <SearchContext.Provider value={{search, setSearch}}>
           <Routes>
+              <Route
+                  path="/:userId"
+                  element={<HomeView />}
+              />
               <Route
                   path="/"
                   element={<HomeView />}
