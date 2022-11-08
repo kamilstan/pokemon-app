@@ -57,7 +57,7 @@ export const PokemonList = () => {
                                 <Link  to={`/card/${card.id}`}>
                                     <Card.Img variant="top" src={card.images.small} />
                                 </Link>
-                                {/*<Button> Add to favorites</Button>*/}
+                                <Button> Add to favorites</Button>
                             </Card>
 
                     ))

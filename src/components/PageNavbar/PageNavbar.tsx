@@ -19,7 +19,7 @@ export const PageNavbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { accessToken, username, role} = useSelector((store: StoreState) => store.user);
+    const { accessToken, username, role, id} = useSelector((store: StoreState) => store.user);
 
     const handleLogout = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -50,17 +50,18 @@ export const PageNavbar = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
             <Container>
-                <Navbar.Brand href="/"><Image fluid width={"100px"} height={"50px"} src="/img.png" alt="pokemon"/></Navbar.Brand>
+                <Navbar.Brand ><Link className="navbar-link" to={"/"}><Image fluid width={"100px"} height={"50px"} src="/img.png" alt="pokemon"/></Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link ><Link className="navbar-link-home" to={"/"}>Home</Link></Nav.Link>
                     </Nav>
                     <Nav>
                         <NavDropdown
+                            className="navbar-collapse"
                             title={username ? username : <Image style={{backgroundColor:"#FFC107", border:"none"}} fluid thumbnail width={"30px"} height={"30px"} src="/person-circle.svg" alt="pokemon"/> }
                             id="collasible-nav-dropdown">
-                            {role ? <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item> : null}
+                            {role ? <NavDropdown.Item href="#action/3.1"><Link className="navbar-link" to={`/${id}/profile`}>Profile</Link></NavDropdown.Item> : null}
                             {role ? <NavDropdown.Item href="#action/3.2" onClick={handleLogout}>Logout</NavDropdown.Item> : null}
                             {role ? null : <NavDropdown.Item href="#action/3.3" ><Link className="navbar-link" to="/login">Login</Link></NavDropdown.Item>}
                             </NavDropdown>

@@ -2,3 +2,20 @@
     text-decoration: none;
     color: #212529;
 }
+
+.navbar-link:hover {
+    color: #212529;
+}
+
+.navbar-link-home {
+    text-decoration: none;
+    color: #FFFFFF8C;
+}
+
+.navbar-link-home:hover {
+    color: #FFFFFF;
+}
+
+.dropdown-menu show {
+    background-color: #212529;
+}

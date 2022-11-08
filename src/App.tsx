@@ -11,6 +11,7 @@ import {CardView} from "./views/CardView/CardView";
 import './App.css';
 import {useSelector} from "react-redux";
 import {StoreState} from "./redux-toolkit/store";
+import {ProfileView} from "./views/ProfileView/ProfileView";
 
 function App() {
 
@@ -24,6 +25,10 @@ function App() {
   return (
       <SearchContext.Provider value={{search, setSearch}}>
           <Routes>
+              <Route
+                  path="/:userId/profile"
+                  element={<ProfileView />}
+              />
               <Route
                   path="/:userId"
                   element={<HomeView />}
