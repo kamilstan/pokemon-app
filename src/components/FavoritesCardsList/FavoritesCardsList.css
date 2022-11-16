@@ -1,4 +1,4 @@
-.favorites-cards-list {
+.favorites-cards {
     position: absolute;
     top: 10vh;
     display: flex;
@@ -7,4 +7,36 @@
     width: 100%;
     padding: 20px;
     color: #FFFFFF;
+}
+
+.favorites-cards-list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.favorites-list-item {
+    padding: 10px;
+    margin: 10px;
+    min-height: 50vh;
+}
+
+.favorites-list-header {
+    background-color: #fff;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.favorites-list-name {
+    color: #282c34;
+}
+
+.favorites-list-button {
+    width: auto;
+    align-self: flex-end;
 }

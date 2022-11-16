@@ -6,8 +6,13 @@ import {SearchContext} from "../../contexts/search.context";
 import {Link} from "react-router-dom";
 import {CardRecord} from "../../types/card/card";
 import {Loader} from "../../common/Loader/Loader";
+import * as _ from "lodash";
+import {useSelector} from "react-redux";
+import {StoreState} from "../../redux-toolkit/store";
 
 export const PokemonList = () => {
+
+    const {id} = useSelector((store: StoreState) => store.user);
 
     const [cards, setCards] = useState<CardRecord[] | null>(null);
     const [page, setPage] = useState(1);
@@ -34,6 +39,25 @@ export const PokemonList = () => {
         setPageSize( pageSize + 5);
     }
 
+    const AddingCardToFavorites = (cardId:string, e:SyntheticEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        (async () => {
+            const res = await fetch(`http://localhost:8080/api/user/${id}/add/${cardId}`, {
+                method: 'PATCH',
+                credentials: 'include',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await res.json();
+            alert("Dodano kartę do ulubionych");
+            setIsLoading(false);
+        })();
+
+    }
+
     if (cards === null) {
         return <Loader/>
     }
@@ -41,10 +65,7 @@ export const PokemonList = () => {
     if (cards.length <= 0) {
         return <p className="pokemon-list pokemon-list-info">There is not such a card. Try again!</p>
 
-
     }
-
-    console.log(cards)
 
     return (
         <div className="pokemon-list-wrapper" >
@@ -54,20 +75,31 @@ export const PokemonList = () => {
                     cards.map((card:CardRecord) => (
 
                             <Card key={card.id}className="pokemon-list-item">
+                                <Card.Header
+                                    as="h5"
+                                    className="pokemon-list-header"
+                                >
+                                    <h6 className="pokemon-list-name">{card.name}</h6>
+                                    <Button
+                                        className="pokemon-list-button"
+                                        variant="outline-warning"
+                                        onClick={(e) => AddingCardToFavorites(card.id, e)}
+                                    >
+                                        Add card
+                                    </Button>
+                                </Card.Header>
                                 <Link  to={`/card/${card.id}`}>
                                     <Card.Img variant="top" src={card.images.small} />
                                 </Link>
-                                <Button> Add to favorites</Button>
+
                             </Card>
 
                     ))
                 }
                 </div>
-                    <Button variant="outline-warning" className="py-2 px-5 pokemon-list-button" onClick={LoadingCards}> Load more </Button>
+                    <Button variant="outline-warning" className="py-2 px-5 pokemon-list-button-loader" onClick={LoadingCards}> Load more </Button>
 
             </div>
         </div>
     )
 }
-
-//Dodac loadery - do przycisku zeby znikal na czas wczytywania danych a pojawiac sie za niego bedzie wlasnie loader
