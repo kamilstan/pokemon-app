@@ -25,7 +25,12 @@ export const FavoritesCardsList = () => {
                 }
             });
             const data = await res.json();
-            setFavoritesCardsIds(data.favoritesCardsIds.split(","));
+            if (data.favoritesCardsIds) {
+                setFavoritesCardsIds(data.favoritesCardsIds.split(","));
+            } else {
+                setFavoritesCardsIds([])
+            }
+
             setIsLoading(false);
         })();
     }, []);
@@ -33,18 +38,20 @@ export const FavoritesCardsList = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        favoritesCardsIds.map(favoriteCardsId => {
-            (async () => {
-                const res = await fetch(`https://api.pokemontcg.io/v2/cards/${favoriteCardsId}`, {
-                    headers: {
-                        "Content-Type":"application/json",
-                    }
-                });
-                const data = await res.json();
-                setCards(prevCards =>_.uniqBy([...prevCards, data.data],"id"));
-                setIsLoading(false);
-            })();
-        })
+         if (favoritesCardsIds) {
+            favoritesCardsIds.map(favoriteCardsId => {
+                (async () => {
+                    const res = await fetch(`https://api.pokemontcg.io/v2/cards/${favoriteCardsId}`, {
+                        headers: {
+                            "Content-Type":"application/json",
+                        }
+                    });
+                    const data = await res.json();
+                    setCards(prevCards =>_.uniqBy([...prevCards, data.data],"id"));
+                })();
+            })
+        }
+        setIsLoading(false);
         return () => {
             setCards([]);
         }
@@ -53,6 +60,7 @@ export const FavoritesCardsList = () => {
 
     const DeleteFromFavorites = (cardId:string, e:SyntheticEvent) => {
         e.preventDefault();
+        setIsLoading(true);
         (async () => {
             const res = await fetch(`http://localhost:8080/api/user/${id}/delete/${cardId}`, {
                 method: 'PATCH',
@@ -63,7 +71,12 @@ export const FavoritesCardsList = () => {
                 },
             });
             const data = await res.json();
-            setFavoritesCardsIds(data.favoritesCardsIds.split(","))
+            if(!data.favoritesCardsIds){
+                setFavoritesCardsIds([]);
+            }else{
+                setFavoritesCardsIds(data.favoritesCardsIds.split(","))
+            }
+
             setIsLoading(false);
         })();
         alert(`Element ${cardId} został usunięty z Ulubionych`)
@@ -73,42 +86,46 @@ export const FavoritesCardsList = () => {
     if (isLoading) {
         return <Loader/>
     }
-    if (favoritesCardsIds.length < 1 ) {
-        return <p>Brak kart</p>
-    }
+    if (favoritesCardsIds.length < 1) {
+        return (
+            <div className="favorites-cards">
+                <h4>Hello, <b>{`${username}`}</b>! </h4>
+                <p className="favorites-cards-info">There is no cards in favorite section!</p>
+            </div>
+        )
+    } else {
+        return (
+            <div className="favorites-cards">
+                <h4>Hello, <b>{`${username}`}</b>! </h4>
+                <p>Check your favorites cards!</p>
+                <div className="favorites-cards-list">
+                    {
+                        cards.map((card) => (
 
-    console.log(cards);
-    return (
-        <div className="favorites-cards">
-            <h4>Hello, <b>{`${username}`}</b>! </h4>
-            <p>Check your favorites cards!</p>
-            <div className="favorites-cards-list">
-                {
-                    cards.map((card) => (
-
-                        <Card key={card.id} className="favorites-list-item">
-                            <Card.Header
-                                as="h5"
-                                className="favorites-list-header"
-                            >
-                                <h6 className="favorites-list-name">{card.name}</h6>
-                                <Button
-                                    onClick={(e) => DeleteFromFavorites(card.id, e)}
-                                    className="favorites-list-button"
-                                    variant="outline-warning"
+                            <Card key={card.id} className="favorites-list-item">
+                                <Card.Header
+                                    as="h5"
+                                    className="favorites-list-header"
                                 >
-                                   Delete
-                                </Button>
-                            </Card.Header>
-                            <Link  to={`/card/${card.id}`}>
-                                <Card.Img variant="top" src={card.images.small} />
-                            </Link>
-                        </Card>
-                    ))
-                }
+                                    <h6 className="favorites-list-name">{card.name}</h6>
+                                    <Button
+                                        onClick={(e) => DeleteFromFavorites(card.id, e)}
+                                        className="favorites-list-button"
+                                        variant="outline-warning"
+                                    >
+                                        Delete
+                                    </Button>
+                                </Card.Header>
+                                <Link to={`/card/${card.id}`}>
+                                    <Card.Img variant="top" src={card.images.small}/>
+                                </Link>
+                            </Card>
+                        ))
+                    }
+                </div>
+
             </div>
 
-        </div>
-
         )
+    }
 }

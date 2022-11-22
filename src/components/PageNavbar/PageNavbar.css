@@ -1,3 +1,8 @@
+.navbar-all {
+    position: relative;
+    z-index: 3;
+}
+
 .navbar-link {
     text-decoration: none;
     color: #212529;
@@ -19,3 +24,14 @@
 .dropdown-menu show {
     background-color: #212529;
 }
+
+.navbar-collapse {
+    z-index: 999;
+}
+
+@media screen and (max-width: 996px) {
+    .dropdown-menu {
+        background-color: #FFC107;
+    }
+}
+

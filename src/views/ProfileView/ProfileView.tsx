@@ -1,14 +1,14 @@
 import React from "react";
 import {PageNavbar} from "../../components/PageNavbar/PageNavbar";
-import {BackgroundWrapper} from "../../common/BackgroundWrapper/BackgroundWrapper";
 import {FavoritesCardsList} from "../../components/FavoritesCardsList/FavoritesCardsList";
+
+import "./ProfileView.css";
 
 export const ProfileView = () => {
     return (
-        <>
+        <div className="profile-view">
             <PageNavbar/>
-            <BackgroundWrapper/>
             <FavoritesCardsList/>
-        </>
+        </div>
     )
 }

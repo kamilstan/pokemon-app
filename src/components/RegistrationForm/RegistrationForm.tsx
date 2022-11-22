@@ -3,6 +3,8 @@ import {Button, Form} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {Loader} from "../../common/Loader/Loader";
 
+import "./RegistrationForm.css";
+
 interface RegistrationFormValues {
     username: string;
     email: string;
@@ -43,7 +45,13 @@ export const RegistrationForm = () => {
                 body: JSON.stringify(registrationForm),
             });
             const data = await res.json();
-            navigate('../login');
+            if (data.message) {
+                alert(data.message);
+            } else {
+                alert(`Użytkownik został zarejestrowany`);
+                navigate('../login');
+            }
+
 
         } finally {
             setLoading(false);
@@ -56,11 +64,11 @@ export const RegistrationForm = () => {
 
     return(
         <Form
-            className="lg-m-5 mx-auto my-5 p-5 w-50 bg-dark text-warning"
+            className="registration-form bg-dark text-warning"
             onSubmit={saveUser}
         >
             <h3 style={{textAlign:"center"}} className="mb-5">Registration</h3>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
                     type="text"
@@ -99,7 +107,7 @@ export const RegistrationForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
                 <Form.Label>Confirm password</Form.Label>
                 <Form.Control
                     type="password"
@@ -111,7 +119,7 @@ export const RegistrationForm = () => {
                 />
             </Form.Group>
 
-            <Button variant="outline-warning" type="submit">
+            <Button className="register-form-button" variant="outline-warning" type="submit">
                 Register
             </Button>
 

@@ -19,38 +19,39 @@ export const SearchingBar = () => {
 
     return (
         <>
-            <Form className="p-3 w-100 searching-form" onSubmit={setSearchingResult}>
-
+            <Form className="p-2 w-100 searching-form" onSubmit={setSearchingResult}>
                 <Form.Group className="w-100 searching-input" >
-                    <Form.Label className="font-monospace w-50 mx-5 searching-label">Find your pokemon card!</Form.Label>
-                    <Form.Control
-                        className="w-25 mx-4 py-2 px-3"
-                        type="text"
-                        placeholder="Enter pokemon name.."
-                        value={inputValue}
-                        onChange={e => setInputValue(e.target.value)}
-                    />
-                    <Form.Select
-                        aria-label="Default select example"
-                        className="w-25"
-                        value={selectValue}
-                        onChange={e => setSelectValue(e.target.value)}
-                    >
-                        <option value="*">All types</option>
-                        <option value="Colorless">Normal</option>
-                        <option value="Fire">Fire</option>
-                        <option value="Water">Water</option>
-                        <option value="Grass">Grass</option>
-                        <option value="Fighting">Fighting</option>
-                        <option value="Lightning">Electric</option>
-                        <option value="Psychic">Psychic</option>
-                        <option value="Metal">Steel</option>
-                        <option value="Dragon">Dragon</option>
-                        <option value="Darkness">Dark</option>
-                        <option value="Fairy">Fairy</option>
-                    </Form.Select>
+                    <Form.Label className="font-monospace searching-label">Find your pokemon card!</Form.Label>
+                    <div className="searching-forms">
+                        <Form.Control
+                            className="searching-by-name me-2 p-3"
+                            type="text"
+                            placeholder="Enter pokemon name.."
+                            value={inputValue}
+                            onChange={e => setInputValue(e.target.value)}
+                        />
+                        <Form.Select
+                            aria-label="Default select example"
+                            className="searching-by-type me-2 p-3"
+                            value={selectValue}
+                            onChange={e => setSelectValue(e.target.value)}
+                        >
+                            <option className="searching-option" value="*">All types</option>
+                            <option className="searching-option" value="Colorless">Normal</option>
+                            <option className="searching-option" value="Fire">Fire</option>
+                            <option className="searching-option" value="Water">Water</option>
+                            <option className="searching-option" value="Grass">Grass</option>
+                            <option className="searching-option" value="Fighting">Fighting</option>
+                            <option className="searching-option" value="Lightning">Electric</option>
+                            <option className="searching-option" value="Psychic">Psychic</option>
+                            <option className="searching-option" value="Metal">Steel</option>
+                            <option className="searching-option" value="Dragon">Dragon</option>
+                            <option className="searching-option" value="Darkness">Dark</option>
+                            <option className="searching-option" value="Fairy">Fairy</option>
+                        </Form.Select>
+                    </div>
                 </Form.Group>
-                <Button variant="outline-warning" className="py-2 px-5" type="submit">Search</Button>
+                <Button variant="outline-warning" className="searching-button py-2 px-5" type="submit">Search</Button>
             </Form>
         </>
 

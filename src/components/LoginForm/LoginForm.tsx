@@ -62,6 +62,10 @@ export const LoginForm = () => {
                 body: JSON.stringify(loginForm),
             });
             const result = await res.json();
+            if (!result.id) {
+              alert(result.message)
+            }
+
             if (result.accessToken) {
                 const decoded = jwtDecode<AccessToken>(result.accessToken);
                 dispatch(setId(result.id));
@@ -70,7 +74,6 @@ export const LoginForm = () => {
                 dispatch(setRole(result.role));
                 dispatch(setUsername(result.username));
             }
-
 
             switch (result.role) {
                 case 'admin':
@@ -94,7 +97,7 @@ export const LoginForm = () => {
     return (
         <div className="login-wrapper">
             <Form
-                className="lg-m-5 mx-auto my-5 p-5 w-50 bg-dark text-warning"
+                className="login-form bg-dark text-warning"
                 onSubmit={submitLoginForm}
             >
                 <h3 style={{textAlign:"center"}} className="mb-5">Login</h3>
@@ -125,7 +128,7 @@ export const LoginForm = () => {
                     />
                 </Form.Group>
     
-                <Button variant="outline-warning" type="submit">
+                <Button className="login-form-button" variant="outline-warning" type="submit">
                     Login
                 </Button>
                 <p className="text-muted mt-5">Do you have an account?</p>

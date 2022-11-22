@@ -48,19 +48,21 @@ export const PageNavbar = () => {
     };
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+        <Navbar collapseOnSelect className="navbar-all" expand="lg" bg="dark" variant="dark" >
             <Container>
                 <Navbar.Brand ><Link className="navbar-link" to={"/"}><Image fluid width={"100px"} height={"50px"} src="/img.png" alt="pokemon"/></Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                <Navbar.Collapse className="navbar-collapse" id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link ><Link className="navbar-link-home" to={"/"}>Home</Link></Nav.Link>
                     </Nav>
                     <Nav>
                         <NavDropdown
                             className="navbar-collapse"
-                            title={username ? username : <Image style={{backgroundColor:"#FFC107", border:"none"}} fluid thumbnail width={"30px"} height={"30px"} src="/person-circle.svg" alt="pokemon"/> }
-                            id="collasible-nav-dropdown">
+                            title={username ? username :
+                                <Image style={{backgroundColor:"#FFC107", border:"none"}} fluid thumbnail width={"30px"} height={"30px"} src="/person-circle.svg" alt="pokemon"/> }
+                            id="collasible-nav-dropdown"
+                        >
                             {role ? <NavDropdown.Item href="#action/3.1"><Link className="navbar-link" to={`/${id}/profile`}>Profile</Link></NavDropdown.Item> : null}
                             {role ? <NavDropdown.Item href="#action/3.2" onClick={handleLogout}>Logout</NavDropdown.Item> : null}
                             {role ? null : <NavDropdown.Item href="#action/3.3" ><Link className="navbar-link" to="/login">Login</Link></NavDropdown.Item>}

@@ -1,11 +1,11 @@
 .pokemon-list {
-    position: absolute;
-    top: 30vh;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 20px;
+    padding: 40px 20px;
+    z-index: 2;
 }
 
 .pokemon-list-info {
@@ -14,21 +14,21 @@
     color: #FFC107;
     background-color: #212529;
     width: 80vw;
-    left: calc(50vw - 40vw);
-    border-radius: 2px;
+    margin: 80px auto;
+    border-radius: 4px;
 }
 
 .pokemon-list-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /*width: 100%;*/
 }
 
 .pokemon-list-item {
     padding: 10px;
     margin: 10px;
     min-height: 50vh;
+    opacity: 100%;
 }
 
 .pokemon-list-header {
@@ -36,7 +36,7 @@
     border: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     padding: 0;
     margin-bottom: 10px;
 }
@@ -54,4 +54,25 @@
     margin-top: 20px;
     width: 25vw;
     text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .pokemon-list-button-loader {
+        width: 80vw;
+    }
+    .pokemon-list-item {
+        padding: 20px;
+        min-height: 45vh;
+    }
+    .pokemon-list-button {
+        padding: 3px 6px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .pokemon-list {
+        margin-top: 10px;
+    }
+
 }

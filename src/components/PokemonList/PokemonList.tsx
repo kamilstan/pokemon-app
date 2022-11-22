@@ -6,7 +6,6 @@ import {SearchContext} from "../../contexts/search.context";
 import {Link} from "react-router-dom";
 import {CardRecord} from "../../types/card/card";
 import {Loader} from "../../common/Loader/Loader";
-import * as _ from "lodash";
 import {useSelector} from "react-redux";
 import {StoreState} from "../../redux-toolkit/store";
 
@@ -30,7 +29,7 @@ export const PokemonList = () => {
             });
             const data = await res.json();
             setCards(data.data);
-            setIsLoading(true);
+            setIsLoading(false);
         })();
     }, [pageSize, search]);
 
@@ -52,17 +51,21 @@ export const PokemonList = () => {
                 },
             });
             const data = await res.json();
-            alert("Dodano kartę do ulubionych");
+            if (data.message) {
+                alert(data.message);
+            } else {
+                alert(`Dodano kartę ${cardId} do ulubionych`);
+            }
             setIsLoading(false);
         })();
 
     }
 
-    if (cards === null) {
+    if (isLoading) {
         return <Loader/>
     }
 
-    if (cards.length <= 0) {
+    if (cards === null || cards.length <= 0) {
         return <p className="pokemon-list pokemon-list-info">There is not such a card. Try again!</p>
 
     }
@@ -74,7 +77,7 @@ export const PokemonList = () => {
                 {
                     cards.map((card:CardRecord) => (
 
-                            <Card key={card.id}className="pokemon-list-item">
+                            <Card key={card.id} className="pokemon-list-item">
                                 <Card.Header
                                     as="h5"
                                     className="pokemon-list-header"
