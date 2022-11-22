@@ -8,6 +8,7 @@ import {CardRecord} from "../../types/card/card";
 import {Loader} from "../../common/Loader/Loader";
 import {useSelector} from "react-redux";
 import {StoreState} from "../../redux-toolkit/store";
+import {apiUrl} from "../../config/api";
 
 export const PokemonList = () => {
 
@@ -42,7 +43,7 @@ export const PokemonList = () => {
         e.preventDefault();
         setIsLoading(true);
         (async () => {
-            const res = await fetch(`http://localhost:8080/api/user/${id}/add/${cardId}`, {
+            const res = await fetch(`${apiUrl}/user/${id}/add/${cardId}`, {
                 method: 'PATCH',
                 credentials: 'include',
                 headers: {

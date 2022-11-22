@@ -13,6 +13,7 @@ import {
 } from "../../redux-toolkit/features/user/user-slice";
 
 import "./PageNavbar.css";
+import {apiUrl} from "../../config/api";
 
 export const PageNavbar = () => {
 
@@ -24,7 +25,7 @@ export const PageNavbar = () => {
     const handleLogout = async (e: SyntheticEvent) => {
         e.preventDefault();
         try {
-            const data = await fetch(`http://localhost:8080/api/login`, {
+            const data = await fetch(`${apiUrl}/login`, {
                 method: 'DELETE',
                 credentials: 'include',
                 headers: {

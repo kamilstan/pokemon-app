@@ -14,6 +14,7 @@ import jwtDecode from "jwt-decode";
 import {Loader} from "../../common/Loader/Loader";
 
 import "./LoginForm.css";
+import {apiUrl} from "../../config/api";
 
 interface LoginFormValues {
     email: string;
@@ -52,7 +53,7 @@ export const LoginForm = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`http://localhost:8080/api/login`, {
+            const res = await fetch(`${apiUrl}/login`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

@@ -7,6 +7,7 @@ import {CardRecord} from "../../types/card/card";
 import {Loader} from "../../common/Loader/Loader";
 import {Link} from "react-router-dom";
 import {Button, Card, Image} from "react-bootstrap";
+import {apiUrl} from "../../config/api";
 
 export const FavoritesCardsList = () => {
 
@@ -19,7 +20,7 @@ export const FavoritesCardsList = () => {
     useEffect(() => {
         setIsLoading(true);
         (async () => {
-            const res = await fetch(`http://localhost:8080/api/user/${id}`, {
+            const res = await fetch(`${apiUrl}/user/${id}`, {
                 headers: {
                     "Content-Type":"application/json",
                 }
@@ -62,7 +63,7 @@ export const FavoritesCardsList = () => {
         e.preventDefault();
         setIsLoading(true);
         (async () => {
-            const res = await fetch(`http://localhost:8080/api/user/${id}/delete/${cardId}`, {
+            const res = await fetch(`${apiUrl}/user/${id}/delete/${cardId}`, {
                 method: 'PATCH',
                 credentials: 'include',
                 headers: {

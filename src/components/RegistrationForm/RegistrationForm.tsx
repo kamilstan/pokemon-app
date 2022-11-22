@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {Loader} from "../../common/Loader/Loader";
 
 import "./RegistrationForm.css";
+import {apiUrl} from "../../config/api";
 
 interface RegistrationFormValues {
     username: string;
@@ -36,7 +37,7 @@ export const RegistrationForm = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`http://localhost:8080/api/registration/user
+            const res = await fetch(`${apiUrl}/registration/user
 `, {
                 method: "POST",
                 headers: {
