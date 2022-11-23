@@ -47,7 +47,7 @@ export const PokemonCard = () => {
         })();
     }
 
-    if (isLoading) {
+    if (card === null || isLoading) {
         return <Loader/>
     }
 

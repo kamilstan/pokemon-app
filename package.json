@@ -51,6 +51,8 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.188"
+    "@types/lodash": "^4.14.188",
+    "customize-cra": "^1.0.0",
+    "react-app-rewire-alias": "^1.1.7"
   }
 }

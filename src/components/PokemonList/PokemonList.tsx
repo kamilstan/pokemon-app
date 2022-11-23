@@ -84,13 +84,15 @@ export const PokemonList = () => {
                                     className="pokemon-list-header"
                                 >
                                     <h6 className="pokemon-list-name">{card.name}</h6>
-                                    <Button
-                                        className="pokemon-list-button"
-                                        variant="outline-warning"
-                                        onClick={(e) => AddingCardToFavorites(card.id, e)}
-                                    >
-                                        Add card
-                                    </Button>
+                                    {id ?
+                                        <Button
+                                            className="pokemon-list-button"
+                                            variant="outline-warning"
+                                            onClick={(e) => AddingCardToFavorites(card.id, e)}
+                                        >
+                                            Add card
+                                        </Button>
+                                        : null}
                                 </Card.Header>
                                 <Link  to={`/card/${card.id}`}>
                                     <Card.Img variant="top" src={card.images.small} />
